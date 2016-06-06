@@ -1,0 +1,33 @@
+class Solution {
+    static public int maxSubArray(int[] A) {
+      int sum = A[0];
+      int sum_max = A[0];
+      int l = 0;
+      int r = 0;
+      
+      for (int i = 0; i < A.length; i++) {
+        if (sum + A[i] > A[i]) {
+          sum = sum + A[i];
+        } else {
+          l = i;
+          sum = A[i];
+        }
+
+        if (sum_max < sum) {
+          r = i;
+          sum_max = sum;
+        }
+      }
+      
+      System.out.println("l = " + l + "; r = " + r);
+      
+      return sum_max;
+    }
+  
+  public static void main(String[] args) {
+    int[] values = new int[] { 13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7 };
+    
+    System.out.println(maxSubArray(values));
+    
+  }
+}
